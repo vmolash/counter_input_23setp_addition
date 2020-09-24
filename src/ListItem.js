@@ -6,13 +6,15 @@ function ListItem(props) {
 
 
     return (
-            <div key={props.el.id}>
+        <div key={props.el.id}>
 
-                {props.el.numberOfButtons.reverse().map(elem => <button onClick={()=> props.changeCounter(props.el.id, -elem)}>{-elem}</button> )}
-                {props.el.value}
-                {props.el.numberOfButtons.reverse().map(elem => <button onClick={()=> props.changeCounter(props.el.id, elem)}>+{elem}</button> )}
+            {props.el.numberOfButtons.reverse().map((elem, i) => <button key={i}
+                                                                         onClick={() => props.changeCounter(props.el.id, -elem)}>{-elem}</button>)}
+            {props.el.value}
+            {props.el.numberOfButtons.reverse().map((elem, i) => <button key={i}
+                                                                         onClick={() => props.changeCounter(props.el.id, elem)}>+{elem}</button>)}
 
-            </div>
+        </div>
     );
 }
 

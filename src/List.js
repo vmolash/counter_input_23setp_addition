@@ -8,7 +8,7 @@ function List(props) {
 
     return (
         <div>
-            {props.list.map(el => <ListItem el={el} changeCounter={props.changeCounter}/>)}
+            {props.list.map(el => <ListItem key={el.id} el={el} changeCounter={props.changeCounter}/>)}
         </div>
     );
 }

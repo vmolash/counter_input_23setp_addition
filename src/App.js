@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { v4 as uuidv4} from 'uuid';
 
 import './App.css';
 import Controller from "./Controller";
@@ -6,21 +7,21 @@ import List from "./List";
 
 function App() {
     const [list, setList] = useState([
-        {value: 0, id: 1, numberOfButtons: [1,2,3]},
-        {value: 1, id: 2, numberOfButtons: [1,2,3]},
-        {value: 2, id: 3, numberOfButtons: [1,2,3]}
+        {value: 0, id: 1, numberOfButtons: [1, 2, 3]},
+        {value: 1, id: 2, numberOfButtons: [1, 2, 3]},
+        {value: 2, id: 3, numberOfButtons: [1, 2, 3]}
     ]);
     const [inputValue, setInputValue] = useState('');
     const [number, setNumber] = useState('');
 
     const addCounter = () => {
         const newButtons = [];
-        for (let i = 1; i <= number ; i++) {
+        for (let i = 1; i <= number; i++) {
             newButtons.push(i);
         }
         const newCounter = {
             value: inputValue,
-            id: Math.random(),
+            id: uuidv4(),
             numberOfButtons: newButtons
         }
         const newList = [...list, newCounter];
@@ -39,7 +40,7 @@ function App() {
         const newList = list.map(el => {
             if (el.id === id) {
                 // return {value: el.value + 1, id: el.id}
-                return {...el, value: el.value+value}
+                return {...el, value: el.value + value}
             }
             return el
         })
@@ -47,8 +48,9 @@ function App() {
     }
     return (
         <div>
-           <Controller addCounter={addCounter} inputHandlerValue={inputHandlerValue} inputHandlerNumber={inputHandlerNumber} inputValue={inputValue} number={number}/>
-           <List list={list} changeCounter={changeCounter}/>
+            <Controller addCounter={addCounter} inputHandlerValue={inputHandlerValue}
+                        inputHandlerNumber={inputHandlerNumber} inputValue={inputValue} number={number}/>
+            <List list={list} changeCounter={changeCounter}/>
         </div>
     );
 }
